@@ -3,7 +3,7 @@ require 'config.php';
 
 $id = (int)$_GET['id'];
 
-$stmt = $conn->prepare("SELECT * FROM PEMINJAMAN WHERE id_peminjaman=?");
+$stmt = $conn->prepare("SELECT * FROM PRODUK WHERE id_produk=?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $data = $stmt->get_result()->fetch_assoc();
@@ -11,34 +11,32 @@ $data = $stmt->get_result()->fetch_assoc();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Peminjaman</title>
+    <title>Edit Produk</title>
 </head>
 <body>
-<h1>Edit Peminjaman</h1>
+<h1>Edit Produk</h1>
 
 <form action="proses_edit.php" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id_peminjaman" value="<?= $data['id_peminjaman'] ?>">
+    <input type="hidden" name="id_produk" value="<?= $data['id_produk'] ?>">
 
-    Nama: <input type="text" name="nama_peminjam" value="<?= htmlspecialchars($data['nama_peminjam']) ?>" required><br><br>
-    Kelas: <input type="text" name="kelas" value="<?= htmlspecialchars($data['kelas']) ?>"><br><br>
-    Ruangan: <input type="text" name="ruangan_dipinjam" value="<?= htmlspecialchars($data['ruangan_dipinjam']) ?>" required><br><br>
-    Tanggal Pinjam: <input type="date" name="tanggal_pinjam" value="<?= $data['tanggal_pinjam'] ?>" required><br><br>
-    Tanggal Kembali: <input type="date" name="tanggal_kembali" value="<?= $data['tanggal_kembali'] ?>"><br><br>
-    Keterangan: <textarea name="keterangan"><?= htmlspecialchars($data['keterangan']) ?></textarea><br><br>
+    Nama Produk: <input type="text" name="nama_produk" value="<?= htmlspecialchars($data['nama_produk']) ?>" required><br><br>
+    Harga Produk: <input type="number" name="harga_produk" value="<?= $data['harga_produk'] ?>" min="0" step="100" required><br><br>
+    Tanggal Pembelian: <input type="date" name="tanggal_pembelian" value="<?= $data['tanggal_pembelian'] ?>" required><br><br>
+    Deskripsi (opsional): <textarea name="deskripsi"><?= htmlspecialchars($data['deskripsi'] ?? '') ?></textarea><br><br>
 
     Foto Lama:
-    <?php if ($data['foto_peminjaman']): ?>
-        <br><img src="uploads/<?= $data['foto_peminjaman'] ?>" width="120"><br>
+    <?php if (!empty($data['foto_produk'])): ?>
+        <br><img src="uploads/<?= $data['foto_produk'] ?>" width="120" alt="<?= htmlspecialchars($data['nama_produk']) ?>"><br>
     <?php else: ?>
         <br>- Tidak ada foto -<br>
     <?php endif; ?>
 
     Ganti Foto (opsional):
-    <input type="file" name="foto_peminjaman" accept="image/*"><br><br>
+    <input type="file" name="foto_produk" accept="image/*"><br><br>
 
-    <input type="submit" value="Update">
+    <input type="submit" value="Update Produk">
 </form>
 
-<a href="index.php">Kembali</a>
+<a href="index.php">Kembali ke Daftar Produk</a>
 </body>
 </html>
