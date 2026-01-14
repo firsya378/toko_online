@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'roselina';
 $pass = 'Roselina@123';
-$db   = 'PEMINJAMAN_RUANG';
+$db   = 'MANAJEMEN_PRODUK';  // Nama database diubah
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
@@ -13,4 +13,3 @@ if ($conn->connect_error) {
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-?>
