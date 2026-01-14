@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tambah Peminjaman</title>
+    <title>Tambah Produk</title>
 </head>
 <body>
-<h1>Tambah Peminjaman</h1>
+<h1>Tambah Produk</h1>
 
 <form action="proses_create.php" method="post" enctype="multipart/form-data">
-    Nama Peminjam: <input type="text" name="nama_peminjam" required><br><br>
-    Kelas: <input type="text" name="kelas"><br><br>
-    Ruangan: <input type="text" name="ruangan_dipinjam" required><br><br>
-    Tanggal Pinjam: <input type="date" name="tanggal_pinjam" required><br><br>
-    Tanggal Kembali: <input type="date" name="tanggal_kembali"><br><br>
-    Keterangan: <textarea name="keterangan"></textarea><br><br>
+    Nama Produk: <input type="text" name="nama_produk" required><br><br>
+    Harga Produk: <input type="number" name="harga_produk" min="0" step="100" required><br><br>
+    Tanggal Pembelian: <input type="date" name="tanggal_pembelian" required><br><br>
+    Deskripsi: <textarea name="deskripsi"></textarea><br><br>
 
-    Foto Peminjaman:
-    <input type="file" name="foto_peminjaman" accept="image/*"><br><br>
+    Foto Produk (opsional):
+    <input type="file" name="foto_produk" accept="image/*"><br><br>
 
-    <input type="submit" value="Simpan">
+    <input type="submit" value="Simpan Produk">
 </form>
 
-<a href="index.php">Kembali</a>
+<a href="index.php">Kembali ke Daftar Produk</a>
 </body>
 </html>
